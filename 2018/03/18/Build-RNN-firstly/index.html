@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        非洲人的战斗-Build-RNN-firstly · SecretBase
+        
+    </title>
+    <link rel="icon" href= /assets/favicon.ico>
+    <!-- TODO: 在font-face加载完毕后改变字体  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
+    <!-- 提前加载place holder  -->
+    <style type="text/css">
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url(/font/Oswald-Regular.ttf);
+        }
+    </style>
+    <style type="text/css">
+        .site-intro {
+            position: relative;
+            width: 100%;
+            height: 50vh;
+            overflow: hidden;
+            box-shadow: -0.1rem 0 0.5rem 0 rgba(0, 0, 0, 0.5);
+        }
+        .site-intro-placeholder {
+            position: absolute;
+            z-index: -2;
+            top: 0;
+            left: 0px;
+            width: calc(100% + 300px);
+            height: 100%;
+            background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+            background-position: center center;
+            transform: translate3d(-226px, 0, 0);
+            animation: gradient-move 2.5s ease-out 0s 1;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+    <link rel="stylesheet" href = /css/style.css?v=20180120 />
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >SecretBase</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">非洲人的战斗-Build-RNN-firstly</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>SecretBase</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            非洲人的战斗-Build-RNN-firstly
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/static/api/js/share.js"];</script>
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/03/18</span>
+                <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                    <span class="iconfont-archer">&#xe604;</span>
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+                <span class="shareWrapper">
+                    <span class="iconfont-archer shareIcon">
+                        &#xe601;
+                    </span>
+                    <span class="bdsharebuttonbox">
+                        <a href="#" class="bds_more shareText" data-cmd="more">Share</a>
+                    </span>
+                </span>
+            </div>
+        
+    </div>
+</div>
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <script>
+            var browser = {
+                    versions: function () {
+                        var u = window.navigator.userAgent;
+                        return {
+                            userAgent: u,
+                            trident: u.indexOf('Trident') > -1, //IE内核
+                            presto: u.indexOf('Presto') > -1, //opera内核
+                            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+                            iPad: u.indexOf('iPad') > -1, //是否为iPad
+                            webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+                            weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+                            uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+                        };
+                    }()
+                }
+
+            function fontLoaded(){
+                console.log('font loaded');
+                if (document.getElementsByClassName('site-intro-meta')) {
+                    document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+                    document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+                    var postIntroTags = document.getElementsByClassName('post-intro-tags')[0],
+                        postIntroMeat = document.getElementsByClassName('post-intro-meta')[0];
+                        if (postIntroTags) {
+                            postIntroTags.classList.add('post-fade-in');
+                        }
+                        if (postIntroMeat) {
+                            postIntroMeat.classList.add('post-fade-in');
+                        }
+                    }
+                }
+                
+            console.log("userAgent:" + browser.versions.userAgent);
+            // UC不支持跨域，所以直接显示
+            if (browser.versions.uc) {
+                console.log("UCBrowser");
+                fontLoaded();
+            } else {
+                WebFont.load({
+                    custom: {
+                        families: ['Oswald-Regular']
+                    },
+                    loading: function () {  //所有字体开始加载
+                        // console.log('loading');
+                    },
+                    active: function () {  //所有字体已渲染
+                        fontLoaded();
+                    },
+                    inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+                        console.log('inactive: timeout');
+                        fontLoaded();
+                    },
+                    timeout: 7000 // Set the timeout to two seconds
+                });
+            }
+        </script>
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="1-Forward-propagation-for-the-basic-Recurrent-Neural-Network"><a href="#1-Forward-propagation-for-the-basic-Recurrent-Neural-Network" class="headerlink" title="1 - Forward propagation for the basic Recurrent Neural Network"></a>1 - Forward propagation for the basic Recurrent Neural Network</h1><h3 id="RNN-cell"><a href="#RNN-cell" class="headerlink" title="RNN cell"></a>RNN cell</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rnn_cell_forward</span><span class="params">(xt, a_prev, parameters)</span>:</span></span><br><span class="line">  <span class="string">"""</span></span><br><span class="line"><span class="string">  xt[t] (n_X,m)</span></span><br><span class="line"><span class="string">  a_prev[t-1] (n_a,m)</span></span><br><span class="line"><span class="string">  Wax</span></span><br><span class="line"><span class="string">  Waa</span></span><br><span class="line"><span class="string">  Wya</span></span><br><span class="line"><span class="string">  ba</span></span><br><span class="line"><span class="string">  by</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  a_next (n_a, m)</span></span><br><span class="line"><span class="string">  yt_pred (n_y,m)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  """</span></span><br><span class="line">  Wax = parameters[<span class="string">"Wax"</span>]</span><br><span class="line">  Waa = parameters[<span class="string">"Waa"</span>]</span><br><span class="line">  Wyx = parameters[<span class="string">"Wyx"</span>]</span><br><span class="line">  ba = parameters[<span class="string">"ba"</span>]</span><br><span class="line">  by = parameters[<span class="string">"by"</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  a_next = np.tanh(np.dot(Wax,xt) + np.dot(Waa,a_prev) + ba)</span><br><span class="line">  yt_pred = softmax(np.dot(Wya,a_next) + by)</span><br><span class="line"></span><br><span class="line">  cache = (a_next,a_prev,xt,parameters)</span><br><span class="line">  <span class="keyword">return</span> a_next,yt_pred,cache</span><br></pre></td></tr></table></figure>
+<h3 id="RNN-forward-pass"><a href="#RNN-forward-pass" class="headerlink" title="RNN forward pass"></a>RNN forward pass</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rnn_forward</span><span class="params">(x,a0,parameters)</span>:</span></span><br><span class="line">  <span class="string">"""</span></span><br><span class="line"><span class="string">  x (n_x,m,T_x)</span></span><br><span class="line"><span class="string">  a0 (n_a,m)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  Waa</span></span><br><span class="line"><span class="string">  Wax</span></span><br><span class="line"><span class="string">  Wya</span></span><br><span class="line"><span class="string">  ba</span></span><br><span class="line"><span class="string">  by</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  a (n_a,m,T_x)</span></span><br><span class="line"><span class="string">  y_pred (n_y,m,T_x)</span></span><br><span class="line"><span class="string">  caches</span></span><br><span class="line"><span class="string">  """</span></span><br><span class="line"></span><br><span class="line">  caches = []</span><br><span class="line"></span><br><span class="line">  n_x, m, T_x = x.shape</span><br><span class="line">  n_y,n_a = parameters[<span class="string">"Wya"</span>].shape</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  a = np.zeros((n_a, m, T_x))</span><br><span class="line">  y_pred = np.zeros((n_y, m, T_x))</span><br><span class="line"></span><br><span class="line">  a_next = np.zeros((n_a,m))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> t <span class="keyword">in</span> range(T_x):</span><br><span class="line">    a_next, yt_pred, cache = rnn_cell_forward(x[:,:,t],a[:,:,t], parameters)</span><br><span class="line">    a[:,:,t] = a_next</span><br><span class="line"></span><br><span class="line">    y_pred[:,:,t] = yt_pred</span><br><span class="line"></span><br><span class="line">    caches.append(cache)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  caches = (caches, x)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> a,y_pred,caches</span><br></pre></td></tr></table></figure>
+<h1 id="2-Long-Short-Term-Memory-LSTM-network"><a href="#2-Long-Short-Term-Memory-LSTM-network" class="headerlink" title="2 - Long Short-Term Memory (LSTM) network"></a>2 - Long Short-Term Memory (LSTM) network</h1><h3 id="LSTM-cell"><a href="#LSTM-cell" class="headerlink" title="LSTM cell"></a>LSTM cell</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lstm_cell_forward</span><span class="params">(xt,a_prev,c_prev,parameters)</span>:</span></span><br><span class="line">  <span class="string">"""</span></span><br><span class="line"><span class="string">    Implement a single forward step of the LSTM-cell as described in Figure (4)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">    xt -- your input data at timestep "t", numpy array of shape (n_x, m).</span></span><br><span class="line"><span class="string">    a_prev -- Hidden state at timestep "t-1", numpy array of shape (n_a, m)</span></span><br><span class="line"><span class="string">    c_prev -- Memory state at timestep "t-1", numpy array of shape (n_a, m)</span></span><br><span class="line"><span class="string">    parameters -- python dictionary containing:</span></span><br><span class="line"><span class="string">                        Wf -- Weight matrix of the forget gate, numpy array of shape (n_a, n_a + n_x)</span></span><br><span class="line"><span class="string">                        bf -- Bias of the forget gate, numpy array of shape (n_a, 1)</span></span><br><span class="line"><span class="string">                        Wi -- Weight matrix of the update gate, numpy array of shape (n_a, n_a + n_x)</span></span><br><span class="line"><span class="string">                        bi -- Bias of the update gate, numpy array of shape (n_a, 1)</span></span><br><span class="line"><span class="string">                        Wc -- Weight matrix of the first "tanh", numpy array of shape (n_a, n_a + n_x)</span></span><br><span class="line"><span class="string">                        bc --  Bias of the first "tanh", numpy array of shape (n_a, 1)</span></span><br><span class="line"><span class="string">                        Wo -- Weight matrix of the output gate, numpy array of shape (n_a, n_a + n_x)</span></span><br><span class="line"><span class="string">                        bo --  Bias of the output gate, numpy array of shape (n_a, 1)</span></span><br><span class="line"><span class="string">                        Wy -- Weight matrix relating the hidden-state to the output, numpy array of shape (n_y, n_a)</span></span><br><span class="line"><span class="string">                        by -- Bias relating the hidden-state to the output, numpy array of shape (n_y, 1)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    a_next -- next hidden state, of shape (n_a, m)</span></span><br><span class="line"><span class="string">    c_next -- next memory state, of shape (n_a, m)</span></span><br><span class="line"><span class="string">    yt_pred -- prediction at timestep "t", numpy array of shape (n_y, m)</span></span><br><span class="line"><span class="string">    cache -- tuple of values needed for the backward pass, contains (a_next, c_next, a_prev, c_prev, xt, parameters)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Note: ft/it/ot stand for the forget/update/output gates, cct stands for the candidate value (c tilde),</span></span><br><span class="line"><span class="string">          c stands for the memory value</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    Wf = parameters[<span class="string">"Wf"</span>]</span><br><span class="line">    bf = parameters[<span class="string">"bf"</span>]</span><br><span class="line">    Wi = parameters[<span class="string">"Wi"</span>]</span><br><span class="line">    bi = parameters[<span class="string">"bi"</span>]</span><br><span class="line">    Wc = parameters[<span class="string">"Wc"</span>]</span><br><span class="line">    bc = parameters[<span class="string">"bc"</span>]</span><br><span class="line">    Wo = parameters[<span class="string">"Wo"</span>]</span><br><span class="line">    bo = parameters[<span class="string">"bo"</span>]</span><br><span class="line">    Wy = parameters[<span class="string">"Wy"</span>]</span><br><span class="line">    by = parameters[<span class="string">"by"</span>]</span><br><span class="line"></span><br><span class="line">    n_x, m = xt.shape</span><br><span class="line">    n_y, n_a = Wy.shape</span><br><span class="line"></span><br><span class="line">    concat = np.zeros((n_x+n_a,m))</span><br><span class="line">    concat = [: n_a,:] = a_prev[:,:]</span><br><span class="line">    concat = [n_a :,:] = xt[:,:]</span><br><span class="line"></span><br><span class="line">    ft = sigmoid(np.dot(Wf,concat)+bf)</span><br><span class="line">    it = sigmoid(np.dot(Wi,concat)+bi)</span><br><span class="line">    cct = np.tanh(np.dot(Wc,concat)+bc)</span><br><span class="line">    c_next = ft*c_prev+it*cct</span><br><span class="line">    ot = sigmoid(np.dot(Wo,concat)+bo)</span><br><span class="line">    a_next = ot*np.tanh(c_next)</span><br><span class="line"></span><br><span class="line">    yt_pred = softmax(np.dot(Wy,a_next)+by)</span><br><span class="line"></span><br><span class="line">    cache = (a_next,c_next,a_prev,c_prev,ft,it,cct,ot,xt,parameters)</span><br><span class="line">    <span class="keyword">return</span> a_next,c_next,yt_pred,cache</span><br></pre></td></tr></table></figure>
+<h3 id="Forward-pass-for-LSTM"><a href="#Forward-pass-for-LSTM" class="headerlink" title="Forward pass for LSTM"></a>Forward pass for LSTM</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lstm_forward</span><span class="params">(x,a0,parameters)</span>:</span></span><br><span class="line">  n_x,m,T_x = x.shape</span><br><span class="line">  n_y,n_a = parameters[<span class="string">'Wy'</span>].shape</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  a = np.zeros((n_a,m,T_x))</span><br><span class="line">  c = np.zeros((n_a,m,T_x))</span><br><span class="line">  y = np.zeros((n_y,m,T_x))</span><br><span class="line"></span><br><span class="line">  a_next = np.zeros((n_a,m))</span><br><span class="line">  c_next = np.zeros((n_a,m))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> t <span class="keyword">in</span> range(T_x):</span><br><span class="line">    a_next, c_next, yt, cache = lstm_cell_forward(x[:,:,t],a[:,:,t],c[:,:,t],parameters)</span><br><span class="line">    a[:,:,t] = a_next</span><br><span class="line">    y[:,:,t] = yt</span><br><span class="line">    c[:,:,t] = c_next</span><br><span class="line">    caches.append(cache)</span><br><span class="line"></span><br><span class="line">  caches = (caches,x)</span><br><span class="line">  <span class="keyword">return</span> a,y,c,caches</span><br></pre></td></tr></table></figure>
+<h1 id="3-Backpropagation-in-RNN"><a href="#3-Backpropagation-in-RNN" class="headerlink" title="3 - Backpropagation in RNN"></a>3 - Backpropagation in RNN</h1><h3 id="Basic-RNN"><a href="#Basic-RNN" class="headerlink" title="Basic RNN"></a>Basic RNN</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rnn_cell_backward</span><span class="params">(da_next,cache)</span>:</span></span><br><span class="line">  (a_next,a_prev,xt,parameters) = cache</span><br><span class="line"></span><br><span class="line">  Wax = parameters[<span class="string">'Wax'</span>]</span><br><span class="line">  Waa = parameters[<span class="string">'Waa'</span>]</span><br><span class="line">  Wya = parameters[<span class="string">'Wya'</span>]</span><br><span class="line">  ba = parameters[<span class="string">'ba'</span>]</span><br><span class="line">  by = parameters[<span class="string">'by'</span>]</span><br><span class="line"></span><br><span class="line">  dtanh = (<span class="number">1</span>-a_next**<span class="number">2</span>)*da_next</span><br><span class="line"></span><br><span class="line">  dxt = np.dot(Wax.T,dtanh)</span><br><span class="line">  dWax = np.dot(dtanh,xt.T)</span><br><span class="line"></span><br><span class="line">  da_prev = np.dot(Waa.T,dtanh)</span><br><span class="line">  dWaa = np.dot(dtanh,a_prev.T)</span><br><span class="line"></span><br><span class="line">  dba = np.sum(dtanh,keepdims=<span class="keyword">True</span>,axis=<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">  gradients = &#123;<span class="string">"dxt"</span>:dxt,<span class="string">"da_prev"</span>:da_prev,<span class="string">"dWax"</span>:dWax,<span class="string">"dWaa"</span>:dWaa,<span class="string">"dba"</span>:dba&#125;</span><br><span class="line">  <span class="keyword">return</span> gradients</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rnn_backward</span><span class="params">(da, caches)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Implement the backward pass for a RNN over an entire sequence of input data.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">    da -- Upstream gradients of all hidden states, of shape (n_a, m, T_x)</span></span><br><span class="line"><span class="string">    caches -- tuple containing information from the forward pass (rnn_forward)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    gradients -- python dictionary containing:</span></span><br><span class="line"><span class="string">                        dx -- Gradient w.r.t. the input data, numpy-array of shape (n_x, m, T_x)</span></span><br><span class="line"><span class="string">                        da0 -- Gradient w.r.t the initial hidden state, numpy-array of shape (n_a, m)</span></span><br><span class="line"><span class="string">                        dWax -- Gradient w.r.t the input's weight matrix, numpy-array of shape (n_a, n_x)</span></span><br><span class="line"><span class="string">                        dWaa -- Gradient w.r.t the hidden state's weight matrix, numpy-arrayof shape (n_a, n_a)</span></span><br><span class="line"><span class="string">                        dba -- Gradient w.r.t the bias, of shape (n_a, 1)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">### START CODE HERE ###</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Retrieve values from the first cache (t=1) of caches (≈2 lines)</span></span><br><span class="line">    (caches, x) = caches</span><br><span class="line">    (a1, a0, x1, parameters) = caches[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Retrieve dimensions from da's and x1's shapes (≈2 lines)</span></span><br><span class="line">    n_a, m, T_x = da.shape</span><br><span class="line">    n_x, m = x1.shape</span><br><span class="line"></span><br><span class="line">    <span class="comment"># initialize the gradients with the right sizes (≈6 lines)</span></span><br><span class="line">    dx = np.zeros((n_x, m, T_x))</span><br><span class="line">    dWax = np.zeros((n_a, n_x))</span><br><span class="line">    dWaa = np.zeros((n_a, n_a))</span><br><span class="line">    dba = np.zeros((n_a, <span class="number">1</span>))</span><br><span class="line">    da0 = np.zeros((n_a, m))</span><br><span class="line">    da_prevt = np.zeros((n_a, m))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Loop through all the time steps</span></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> reversed(range(T_x)):</span><br><span class="line">        <span class="comment"># Compute gradients at time step t. Choose wisely the "da_next" and the "cache" to use in the backward propagation step. (≈1 line)</span></span><br><span class="line">        gradients = rnn_cell_backward(da[:, :, t]+ da_prevt , caches[t])</span><br><span class="line">        <span class="comment"># Retrieve derivatives from gradients (≈ 1 line)</span></span><br><span class="line">        dxt, da_prevt, dWaxt, dWaat, dbat = gradients[<span class="string">"dxt"</span>], gradients[<span class="string">"da_prev"</span>], gradients[<span class="string">"dWax"</span>], gradients[<span class="string">"dWaa"</span>], gradients[<span class="string">"dba"</span>]</span><br><span class="line">        <span class="comment"># Increment global derivatives w.r.t parameters by adding their derivative at time-step t (≈4 lines)</span></span><br><span class="line">        dx[:, :, t] = dxt</span><br><span class="line">        dWax += dWaxt</span><br><span class="line">        dWaa += dWaat</span><br><span class="line">        dba += dbat</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Set da0 to the gradient of a which has been backpropagated through all time-steps (≈1 line)</span></span><br><span class="line">    da0 = da_prevt</span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Store the gradients in a python dictionary</span></span><br><span class="line">    gradients = &#123;<span class="string">"dx"</span>: dx, <span class="string">"da0"</span>: da0, <span class="string">"dWax"</span>: dWax, <span class="string">"dWaa"</span>: dWaa,<span class="string">"dba"</span>: dba&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> gradients</span><br></pre></td></tr></table></figure>
+<h3 id="LSTM-backward-pass"><a href="#LSTM-backward-pass" class="headerlink" title="LSTM backward pass"></a>LSTM backward pass</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lstm_cell_backward</span><span class="params">(da_next, dc_next, cache)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Implement the backward pass for the LSTM-cell (single time-step).</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">    da_next -- Gradients of next hidden state, of shape (n_a, m)</span></span><br><span class="line"><span class="string">    dc_next -- Gradients of next cell state, of shape (n_a, m)</span></span><br><span class="line"><span class="string">    cache -- cache storing information from the forward pass</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    gradients -- python dictionary containing:</span></span><br><span class="line"><span class="string">                        dxt -- Gradient of input data at time-step t, of shape (n_x, m)</span></span><br><span class="line"><span class="string">                        da_prev -- Gradient w.r.t. the previous hidden state, numpy array of shape (n_a, m)</span></span><br><span class="line"><span class="string">                        dc_prev -- Gradient w.r.t. the previous memory state, of shape (n_a, m, T_x)</span></span><br><span class="line"><span class="string">                        dWf -- Gradient w.r.t. the weight matrix of the forget gate, numpy array of shape (n_a, n_a + n_x)</span></span><br><span class="line"><span class="string">                        dWi -- Gradient w.r.t. the weight matrix of the update gate, numpy array of shape (n_a, n_a + n_x)</span></span><br><span class="line"><span class="string">                        dWc -- Gradient w.r.t. the weight matrix of the memory gate, numpy array of shape (n_a, n_a + n_x)</span></span><br><span class="line"><span class="string">                        dWo -- Gradient w.r.t. the weight matrix of the output gate, numpy array of shape (n_a, n_a + n_x)</span></span><br><span class="line"><span class="string">                        dbf -- Gradient w.r.t. biases of the forget gate, of shape (n_a, 1)</span></span><br><span class="line"><span class="string">                        dbi -- Gradient w.r.t. biases of the update gate, of shape (n_a, 1)</span></span><br><span class="line"><span class="string">                        dbc -- Gradient w.r.t. biases of the memory gate, of shape (n_a, 1)</span></span><br><span class="line"><span class="string">                        dbo -- Gradient w.r.t. biases of the output gate, of shape (n_a, 1)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Retrieve information from "cache"</span></span><br><span class="line">    (a_next, c_next, a_prev, c_prev, ft, it, cct, ot, xt, parameters) = cache</span><br><span class="line"></span><br><span class="line">    <span class="comment">### START CODE HERE ###</span></span><br><span class="line">    <span class="comment"># Retrieve dimensions from xt's and a_next's shape (≈2 lines)</span></span><br><span class="line">    n_x, m = xt.shape</span><br><span class="line">    n_a, m = a_next.shape</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Compute gates related derivatives, you can find their values can be found by looking carefully at equations (7) to (10) (≈4 lines)</span></span><br><span class="line">    dot = da_next*np.tanh(c_next)*ot*(<span class="number">1</span>-ot)</span><br><span class="line">    dcct = (dc_next*it+ot*(<span class="number">1</span>-np.square(np.tanh(c_next)))*it*da_next)*(<span class="number">1</span>-np.square(cct))</span><br><span class="line">    dit = (dc_next*cct+ot*(<span class="number">1</span>-np.square(np.tanh(c_next)))*cct*da_next)*it*(<span class="number">1</span>-it)</span><br><span class="line">    dft = (dc_next*c_prev+ot*(<span class="number">1</span>-np.square(np.tanh(c_next)))*c_prev*da_next)*ft*(<span class="number">1</span>-ft)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Code equations (7) to (10) (≈4 lines)</span></span><br><span class="line">    <span class="comment">#dit = None # 重复?</span></span><br><span class="line">    <span class="comment">#dft = None</span></span><br><span class="line">    <span class="comment">#dot = None</span></span><br><span class="line">    <span class="comment">#dcct = None</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Compute parameters related derivatives. Use equations (11)-(14) (≈8 lines)</span></span><br><span class="line">    dWf = np.dot(dft,np.concatenate((a_prev, xt), axis=<span class="number">0</span>).T)</span><br><span class="line">    dWi = np.dot(dit,np.concatenate((a_prev, xt), axis=<span class="number">0</span>).T)  </span><br><span class="line">    dWc = np.dot(dcct,np.concatenate((a_prev, xt), axis=<span class="number">0</span>).T)  </span><br><span class="line">    dWo = np.dot(dot,np.concatenate((a_prev, xt), axis=<span class="number">0</span>).T)  </span><br><span class="line">    dbf = np.sum(dft,axis=<span class="number">1</span>,keepdims=<span class="keyword">True</span>)  </span><br><span class="line">    dbi = np.sum(dit,axis=<span class="number">1</span>,keepdims=<span class="keyword">True</span>)  </span><br><span class="line">    dbc = np.sum(dcct,axis=<span class="number">1</span>,keepdims=<span class="keyword">True</span>)  </span><br><span class="line">    dbo = np.sum(dot,axis=<span class="number">1</span>,keepdims=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Compute derivatives w.r.t previous hidden state, previous memory state and input. Use equations (15)-(17). (≈3 lines)</span></span><br><span class="line">    da_prev = np.dot(parameters[<span class="string">'Wf'</span>][:,:n_a].T,dft)+np.dot(parameters[<span class="string">'Wi'</span>][:,:n_a].T,dit)+np.dot(parameters[<span class="string">'Wc'</span>][:,:n_a].T,dcct)+np.dot(parameters[<span class="string">'Wo'</span>][:,:n_a].T,dot)  </span><br><span class="line">    dc_prev = dc_next*ft+ot*(<span class="number">1</span>-np.square(np.tanh(c_next)))*ft*da_next  </span><br><span class="line">    dxt = np.dot(parameters[<span class="string">'Wf'</span>][:,n_a:].T,dft)+np.dot(parameters[<span class="string">'Wi'</span>][:,n_a:].T,dit)+np.dot(parameters[<span class="string">'Wc'</span>][:,n_a:].T,dcct)+np.dot(parameters[<span class="string">'Wo'</span>][:,n_a:].T,dot)</span><br><span class="line"></span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Save gradients in dictionary</span></span><br><span class="line">    gradients = &#123;<span class="string">"dxt"</span>: dxt, <span class="string">"da_prev"</span>: da_prev, <span class="string">"dc_prev"</span>: dc_prev, <span class="string">"dWf"</span>: dWf,<span class="string">"dbf"</span>: dbf, <span class="string">"dWi"</span>: dWi,<span class="string">"dbi"</span>: dbi,</span><br><span class="line">                <span class="string">"dWc"</span>: dWc,<span class="string">"dbc"</span>: dbc, <span class="string">"dWo"</span>: dWo,<span class="string">"dbo"</span>: dbo&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> gradients</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lstm_backward</span><span class="params">(da, caches)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Implement the backward pass for the RNN with LSTM-cell (over a whole sequence).</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">    da -- Gradients w.r.t the hidden states, numpy-array of shape (n_a, m, T_x)</span></span><br><span class="line"><span class="string">    dc -- Gradients w.r.t the memory states, numpy-array of shape (n_a, m, T_x)</span></span><br><span class="line"><span class="string">    caches -- cache storing information from the forward pass (lstm_forward)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    gradients -- python dictionary containing:</span></span><br><span class="line"><span class="string">                        dx -- Gradient of inputs, of shape (n_x, m, T_x)</span></span><br><span class="line"><span class="string">                        da0 -- Gradient w.r.t. the previous hidden state, numpy array of shape (n_a, m)</span></span><br><span class="line"><span class="string">                        dWf -- Gradient w.r.t. the weight matrix of the forget gate, numpy array of shape (n_a, n_a + n_x)</span></span><br><span class="line"><span class="string">                        dWi -- Gradient w.r.t. the weight matrix of the update gate, numpy array of shape (n_a, n_a + n_x)</span></span><br><span class="line"><span class="string">                        dWc -- Gradient w.r.t. the weight matrix of the memory gate, numpy array of shape (n_a, n_a + n_x)</span></span><br><span class="line"><span class="string">                        dWo -- Gradient w.r.t. the weight matrix of the save gate, numpy array of shape (n_a, n_a + n_x)</span></span><br><span class="line"><span class="string">                        dbf -- Gradient w.r.t. biases of the forget gate, of shape (n_a, 1)</span></span><br><span class="line"><span class="string">                        dbi -- Gradient w.r.t. biases of the update gate, of shape (n_a, 1)</span></span><br><span class="line"><span class="string">                        dbc -- Gradient w.r.t. biases of the memory gate, of shape (n_a, 1)</span></span><br><span class="line"><span class="string">                        dbo -- Gradient w.r.t. biases of the save gate, of shape (n_a, 1)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Retrieve values from the first cache (t=1) of caches.</span></span><br><span class="line">    (caches, x) = caches</span><br><span class="line">    (a1, c1, a0, c0, f1, i1, cc1, o1, x1, parameters) = caches[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment">### START CODE HERE ###</span></span><br><span class="line">    <span class="comment"># Retrieve dimensions from da's and x1's shapes (≈2 lines)</span></span><br><span class="line">    n_a, m, T_x = da.shape  </span><br><span class="line">    n_x, m = x1.shape</span><br><span class="line"></span><br><span class="line">    <span class="comment"># initialize the gradients with the right sizes (≈12 lines)</span></span><br><span class="line">    dx = np.zeros((n_x, m, T_x))  </span><br><span class="line">    da0 = np.zeros((n_a, m))  </span><br><span class="line">    da_prevt = np.zeros((n_a, m))  </span><br><span class="line">    dc_prevt = np.zeros((n_a, m))  </span><br><span class="line">    dWf = np.zeros((n_a, n_a + n_x))  </span><br><span class="line">    dWi = np.zeros((n_a, n_a + n_x))  </span><br><span class="line">    dWc = np.zeros((n_a, n_a + n_x))  </span><br><span class="line">    dWo = np.zeros((n_a, n_a + n_x))  </span><br><span class="line">    dbf = np.zeros((n_a, <span class="number">1</span>))  </span><br><span class="line">    dbi = np.zeros((n_a, <span class="number">1</span>))  </span><br><span class="line">    dbc = np.zeros((n_a, <span class="number">1</span>))  </span><br><span class="line">    dbo = np.zeros((n_a, <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># loop back over the whole sequence</span></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> reversed(range(T_x)):</span><br><span class="line">        <span class="comment"># Compute all gradients using lstm_cell_backward</span></span><br><span class="line">        gradients = lstm_cell_backward(da[:,:,t]+da_prevt,dc_prevt,caches[t])  </span><br><span class="line">        <span class="comment"># Store or add the gradient to the parameters' previous step's gradient</span></span><br><span class="line">        dx[:, :, t] = gradients[<span class="string">'dxt'</span>]  </span><br><span class="line">        dWf = dWf+gradients[<span class="string">'dWf'</span>]  </span><br><span class="line">        dWi = dWi+gradients[<span class="string">'dWi'</span>]  </span><br><span class="line">        dWc = dWc+gradients[<span class="string">'dWc'</span>]  </span><br><span class="line">        dWo = dWo+gradients[<span class="string">'dWo'</span>]  </span><br><span class="line">        dbf = dbf+gradients[<span class="string">'dbf'</span>]  </span><br><span class="line">        dbi = dbi+gradients[<span class="string">'dbi'</span>]  </span><br><span class="line">        dbc = dbc+gradients[<span class="string">'dbc'</span>]  </span><br><span class="line">        dbo = dbo+gradients[<span class="string">'dbo'</span>]  </span><br><span class="line">    <span class="comment"># Set the first activation's gradient to the backpropagated gradient da_prev.</span></span><br><span class="line">    da0 =gradients[<span class="string">'da_prev'</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Store the gradients in a python dictionary</span></span><br><span class="line">    gradients = &#123;<span class="string">"dx"</span>: dx, <span class="string">"da0"</span>: da0, <span class="string">"dWf"</span>: dWf,<span class="string">"dbf"</span>: dbf, <span class="string">"dWi"</span>: dWi,<span class="string">"dbi"</span>: dbi,</span><br><span class="line">                <span class="string">"dWc"</span>: dWc,<span class="string">"dbc"</span>: dbc, <span class="string">"dWo"</span>: dWo,<span class="string">"dbo"</span>: dbo&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> gradients</span><br></pre></td></tr></table></figure>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/2018/02/26/car-detection/" title= 非洲人的战斗-car_detection >
+                    <span>Previous Post</span>
+                    <span>非洲人的战斗-car_detection</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:758018147@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+        <span id="busuanzi_container_site_pv">VISITOR VOLUME: <span id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Forward-propagation-for-the-basic-Recurrent-Neural-Network"><span class="toc-number">1.</span> <span class="toc-text">1 - Forward propagation for the basic Recurrent Neural Network</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RNN-cell"><span class="toc-number">1.0.1.</span> <span class="toc-text">RNN cell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RNN-forward-pass"><span class="toc-number">1.0.2.</span> <span class="toc-text">RNN forward pass</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Long-Short-Term-Memory-LSTM-network"><span class="toc-number">2.</span> <span class="toc-text">2 - Long Short-Term Memory (LSTM) network</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LSTM-cell"><span class="toc-number">2.0.1.</span> <span class="toc-text">LSTM cell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forward-pass-for-LSTM"><span class="toc-number">2.0.2.</span> <span class="toc-text">Forward pass for LSTM</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Backpropagation-in-RNN"><span class="toc-number">3.</span> <span class="toc-text">3 - Backpropagation in RNN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic-RNN"><span class="toc-number">3.0.1.</span> <span class="toc-text">Basic RNN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LSTM-backward-pass"><span class="toc-number">3.0.2.</span> <span class="toc-text">LSTM backward pass</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header sidebar-header-show-archive">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 12 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href= "/2018/03/18/Build-RNN-firstly/" >非洲人的战斗-Build-RNN-firstly</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href= "/2018/02/26/car-detection/" >非洲人的战斗-car_detection</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/13</span><a class="archive-post-title" href= "/2018/02/13/CNN-Application/" >非洲人的战斗-CNN_Application</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href= "/2018/02/12/Build-CNN-firstly/" >非洲人的战斗Build_CNN_firstly</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/08</span><a class="archive-post-title" href= "/2018/02/08/optimization/" >非洲人的战斗-Optimization Method</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/08</span><a class="archive-post-title" href= "/2018/02/08/GradientChecking/" >非洲人的战斗-GradientChecking</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/08</span><a class="archive-post-title" href= "/2018/02/08/Regularization/" >非洲人的战斗-Regularization</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/08</span><a class="archive-post-title" href= "/2018/02/08/Initialization/" >非洲人的战斗-Initialization</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/07</span><a class="archive-post-title" href= "/2018/02/07/DNN-image-classification/" >非洲人的战斗-DNN的图片分类</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/06</span><a class="archive-post-title" href= "/2018/02/06/Build_DNN_firstly/" >非洲人的战斗-building DNN firstly</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/05</span><a class="archive-post-title" href= "/2018/02/05/one-hidden-layer/" >非洲人的战斗-one_hidden_layer</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/30</span><a class="archive-post-title" href= "/2018/01/30/hello-world/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name"><a href= "#">Tensorflow</a></span>
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    </body>
+</html>
+
+

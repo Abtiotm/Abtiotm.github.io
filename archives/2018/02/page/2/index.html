@@ -158,17 +158,14 @@
     
     
         <article class="index-post">
-            <a class="abstract-title" href = "/2018/01/30/hello-world/" >
+            <a class="abstract-title" href = "/2018/02/06/Build_DNN_firstly/" >
                 
-                    <span>Hello World</span>
+                    <span>非洲人的战斗-building DNN firstly</span>
             </a>
-            <a class="content-show-full" href = "/2018/01/30/hello-world/" >
+            <a class="content-show-full" href = "/2018/02/06/Build_DNN_firstly/" >
                 <div class="abstract-content">
-                    Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
-More info: Writing
-Run server1$ hexo server
-More...
+                    1.Package深度神经网络第一步，导入必要的包。
+1234567891011121314import numpy as npimport h5py             #什么东西import matplotlib.pyplot as pltfrom textCases_v3 import *            #为了测试from dnn_utils_v2 import sigmoid,sigmoid_backward,relu,relu_backward   #必要的function%matplotlib inline                    #将图表嵌入not...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -176,12 +173,40 @@ More...
                 
                 <!-- date  -->
                 <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/30</span>
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/02/06</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="abstract-title" href = "/2018/02/05/one-hidden-layer/" >
+                
+                    <span>非洲人的战斗-one_hidden_layer</span>
+            </a>
+            <a class="content-show-full" href = "/2018/02/05/one-hidden-layer/" >
+                <div class="abstract-content">
+                    本文将极为简略
+123456def layer_sizes(X,Y):  n_x = X.shape[0]  n_h = 4  n_y = Y.shape[0]  return (n_x,n_h,n_y)
+1234567def initialize_parameters(n_x,n_h,n_y):  W1 = np.random.randn(n_h,n_x) * 0.01  b1 = np.zeros((n_h,1))  W2 = np.random.randn(n_y.n_h) * 0.01  b2 = np.zeros((n_y,1))  return &#123;'W1':W1, ...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/02/05</span>
                 </div>
             </div>
         </article>
     
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archives/2018/02/">#PREV</a><a class="page-number" href="/archives/2018/02/">1</a><span class="page-number current">2</span>
+    </nav>
     
 </main>
             <!-- profile -->
